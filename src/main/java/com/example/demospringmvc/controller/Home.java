@@ -4,9 +4,7 @@ import com.example.demospringmvc.model.Product;
 import com.example.demospringmvc.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,12 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 public class Home {
     @GetMapping("/home")
     public String toan(Model model) {
-        model.addAttribute("products", ProductService.products);
+        model.addAttribute("sanPhams", ProductService.products);
         return "home";
     }
 
-    @GetMapping("/delete")
-    public String delete(@RequestParam int id) {
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable int id) {
         ProductService.delete(id);
         return "redirect:/home";
     }

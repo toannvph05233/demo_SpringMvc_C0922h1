@@ -10,8 +10,8 @@ public class ProductService {
     public static List<Product> products = new ArrayList<>();
 
     static  {
-        products.add(new Product(1,"BimBim", 10));
-        products.add(new Product(2,"Keo",20));
+        products.add(new Product(1,"BimBim", 10, true));
+        products.add(new Product(2,"Kẹo ke",20, false));
     }
 
     public static void delete(int id){

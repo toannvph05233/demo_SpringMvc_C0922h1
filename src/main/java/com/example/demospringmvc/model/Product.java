@@ -6,10 +6,13 @@ public class Product {
     private String name;
     private double price;
 
-    public Product(int id, String name, double price) {
+    private boolean status;
+
+    public Product(int id, String name, double price, boolean status) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.status = status;
     }
 
     public Product() {
@@ -37,5 +40,13 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }
