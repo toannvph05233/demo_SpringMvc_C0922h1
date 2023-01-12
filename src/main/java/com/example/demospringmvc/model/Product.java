@@ -4,13 +4,15 @@ package com.example.demospringmvc.model;
 public class Product {
     private int id;
     private String name;
+    private String img;
     private double price;
 
     private boolean status;
 
-    public Product(int id, String name, double price, boolean status) {
+    public Product(int id, String name, String img, double price, boolean status) {
         this.id = id;
         this.name = name;
+        this.img = img;
         this.price = price;
         this.status = status;
     }
@@ -48,5 +50,13 @@ public class Product {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

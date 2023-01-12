@@ -4,9 +4,13 @@ import com.example.demospringmvc.model.Product;
 import com.example.demospringmvc.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 
 @Controller
 public class Home {
@@ -28,7 +32,14 @@ public class Home {
     }
 
     @PostMapping("/create")
-    public String create(Product product) {
+    public String create(Product product, @RequestParam MultipartFile upImg) {
+        String nameFile = upImg.getOriginalFilename();
+        try {
+            FileCopyUtils.copy(upImg.getBytes(), new File("/Users/johntoan98gmail.com/Desktop/Module 4/demo_SpringMvc_C0922h1/src/main/webapp/WEB-INF/image/" + nameFile));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        product.setImg("/image/"+ nameFile);
         ProductService.products.add(product);
         return "redirect:/home";
     }

@@ -10,8 +10,7 @@ public class ProductService {
     public static List<Product> products = new ArrayList<>();
 
     static  {
-        products.add(new Product(1,"BimBim", 10, true));
-        products.add(new Product(2,"Kẹo ke",20, false));
+        products.add(new Product(1,"BimBim","https://noithatbinhminh.com.vn/wp-content/uploads/2022/08/anh-dep-56.jpg",10, true));
     }
 
     public static void delete(int id){
