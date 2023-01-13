@@ -2,6 +2,7 @@ package com.example.demospringmvc.controller;
 
 import com.example.demospringmvc.model.Product;
 import com.example.demospringmvc.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -14,15 +15,18 @@ import java.io.IOException;
 
 @Controller
 public class Home {
+    @Autowired
+    ProductService productService;
+
     @GetMapping("/home")
     public String toan(Model model) {
-        model.addAttribute("sanPhams", ProductService.products);
+        model.addAttribute("sanPhams", productService.getAll());
         return "home";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable int id) {
-        ProductService.delete(id);
+        productService.delete(id);
         return "redirect:/home";
     }
 
@@ -40,7 +44,7 @@ public class Home {
             e.printStackTrace();
         }
         product.setImg("/image/"+ nameFile);
-        ProductService.products.add(product);
+        productService.save(product);
         return "redirect:/home";
     }
 

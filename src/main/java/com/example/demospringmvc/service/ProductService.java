@@ -1,23 +1,32 @@
 package com.example.demospringmvc.service;
 
 
+import com.example.demospringmvc.dao.ProductDAO;
 import com.example.demospringmvc.model.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductService {
-    public static List<Product> products = new ArrayList<>();
+    @Autowired
+    ProductDAO productDAO;
 
-    static  {
-        products.add(new Product(1,"BimBim","https://noithatbinhminh.com.vn/wp-content/uploads/2022/08/anh-dep-56.jpg",10, true));
+    public List<Product> getAll(){
+        return productDAO.getAll();
     }
 
-    public static void delete(int id){
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getId() == id){
-                products.remove(i);
-            }
-        }
+    public void delete(int id){
+        productDAO.delete(productDAO.findById(id));
     }
+
+    public void edit(Product product){
+        productDAO.edit(product);
+    }
+
+    public void save(Product product){
+        productDAO.save(product);
+    }
+
+
 }

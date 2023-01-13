@@ -1,12 +1,15 @@
 package com.example.demospringmvc.model;
 
+import javax.persistence.*;
 
+@Entity
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String img;
     private double price;
-
     private boolean status;
 
     public Product(int id, String name, String img, double price, boolean status) {
